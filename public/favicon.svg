@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#06b6d4;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#a855f7;stop-opacity:1" />
+    </linearGradient>
+  </defs>
+  <!-- Chef Hat -->
+  <rect x="30" y="65" width="40" height="14" rx="3" fill="url(#grad)"/>
+  <rect x="28" y="62" width="44" height="6" rx="2" fill="url(#grad)"/>
+  <!-- Hat puff top -->
+  <ellipse cx="50" cy="45" rx="22" ry="22" fill="url(#grad)"/>
+  <ellipse cx="32" cy="52" rx="12" ry="14" fill="url(#grad)"/>
+  <ellipse cx="68" cy="52" rx="12" ry="14" fill="url(#grad)"/>
+  <!-- AI circuit dot -->
+  <circle cx="50" cy="45" r="6" fill="white" opacity="0.9"/>
+  <circle cx="50" cy="45" r="3" fill="#06b6d4"/>
+</svg>
