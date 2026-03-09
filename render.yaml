@@ -1,7 +1,7 @@
 services:
-  - type: static
+  - type: web
     name: digichef-franchise
-    runtime: static
+    env: static
     buildCommand: npm run build
     staticPublishPath: ./dist
     pullRequestPreviewsEnabled: false
