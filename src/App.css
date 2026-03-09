@@ -1,0 +1,339 @@
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #1e293b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #475569;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #64748b;
+}
+
+/* Smooth scroll */
+html {
+  scroll-behavior: smooth;
+}
+
+/* ============================================
+   SCROLL REVEAL ANIMATIONS
+   ============================================ */
+
+/* Base reveal state - hidden */
+.reveal {
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-left {
+  opacity: 0;
+  transform: translateX(-50px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-right {
+  opacity: 0;
+  transform: translateX(50px);
+  transition: opacity 0.7s ease, transform 0.7s ease;
+}
+
+.reveal-scale {
+  opacity: 0;
+  transform: scale(0.85);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+}
+
+/* Staggered children delay */
+.stagger > *:nth-child(1) { transition-delay: 0ms; }
+.stagger > *:nth-child(2) { transition-delay: 100ms; }
+.stagger > *:nth-child(3) { transition-delay: 200ms; }
+.stagger > *:nth-child(4) { transition-delay: 300ms; }
+.stagger > *:nth-child(5) { transition-delay: 400ms; }
+.stagger > *:nth-child(6) { transition-delay: 500ms; }
+
+/* Active state - visible */
+.reveal.active,
+.reveal-left.active,
+.reveal-right.active,
+.reveal-scale.active {
+  opacity: 1;
+  transform: none;
+}
+
+/* ============================================
+   ORIGINAL FADE IN
+   ============================================ */
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fadeIn 0.6s ease-out;
+}
+
+/* ============================================
+   COUNTER ANIMATION
+   ============================================ */
+.counter-number {
+  display: inline-block;
+  font-variant-numeric: tabular-nums;
+}
+
+/* ============================================
+   GRADIENT TEXT & GLOW
+   ============================================ */
+.gradient-text {
+  background: linear-gradient(90deg, #06b6d4, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Animated gradient for hero heading */
+@keyframes gradientShift {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+.gradient-animate {
+  background: linear-gradient(270deg, #06b6d4, #a855f7, #ec4899, #06b6d4);
+  background-size: 300% 300%;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  animation: gradientShift 4s ease infinite;
+}
+
+/* ============================================
+   GLASS EFFECT
+   ============================================ */
+.glass {
+  background: rgba(30, 41, 59, 0.8);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+}
+
+/* ============================================
+   CARD HOVER EFFECT
+   ============================================ */
+.card-hover {
+  transition: all 0.3s ease;
+}
+
+.card-hover:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================
+   BUTTON SHINE EFFECT
+   ============================================ */
+.btn-shine {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-shine::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -75%;
+  width: 50%;
+  height: 200%;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(255, 255, 255, 0.15),
+    transparent
+  );
+  transform: skewX(-20deg);
+  transition: none;
+  opacity: 0;
+}
+
+.btn-shine:hover::after {
+  animation: btnShine 0.6s ease forwards;
+  opacity: 1;
+}
+
+@keyframes btnShine {
+  from { left: -75%; }
+  to   { left: 125%; }
+}
+
+/* ============================================
+   PULSE ANIMATION
+   ============================================ */
+@keyframes pulse-green {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 10px rgba(34, 197, 94, 0);
+  }
+}
+
+.pulse-green {
+  animation: pulse-green 2s infinite;
+}
+
+/* ============================================
+   FLOATING CTA BUTTON (MOBILE)
+   ============================================ */
+.floating-cta {
+  position: fixed;
+  bottom: 24px;
+  right: 20px;
+  z-index: 999;
+  display: none;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.4s ease, transform 0.4s ease;
+}
+
+.floating-cta.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .floating-cta {
+    display: block;
+  }
+}
+
+/* Floating CTA pulse ring */
+@keyframes ring-pulse {
+  0% { transform: scale(1); opacity: 0.6; }
+  100% { transform: scale(1.6); opacity: 0; }
+}
+
+.floating-cta-ring {
+  position: absolute;
+  inset: 0;
+  border-radius: 9999px;
+  background: linear-gradient(135deg, #06b6d4, #a855f7);
+  animation: ring-pulse 1.8s ease-out infinite;
+  z-index: -1;
+}
+
+/* ============================================
+   HERO PARTICLES (BACKGROUND DOTS)
+   ============================================ */
+@keyframes float {
+  0%, 100% { transform: translateY(0px) rotate(0deg); }
+  33%  { transform: translateY(-15px) rotate(120deg); }
+  66%  { transform: translateY(8px) rotate(240deg); }
+}
+
+.particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.15;
+  pointer-events: none;
+}
+.particle:nth-child(1)  { width: 8px;  height: 8px;  background: #06b6d4; top: 20%; left: 10%; animation: float 6s ease-in-out infinite; }
+.particle:nth-child(2)  { width: 12px; height: 12px; background: #a855f7; top: 60%; left: 5%;  animation: float 8s ease-in-out infinite 1s; }
+.particle:nth-child(3)  { width: 6px;  height: 6px;  background: #ec4899; top: 40%; left: 90%; animation: float 7s ease-in-out infinite 2s; }
+.particle:nth-child(4)  { width: 10px; height: 10px; background: #06b6d4; top: 80%; left: 80%; animation: float 9s ease-in-out infinite 0.5s; }
+.particle:nth-child(5)  { width: 7px;  height: 7px;  background: #a855f7; top: 15%; left: 70%; animation: float 5s ease-in-out infinite 3s; }
+
+/* ============================================
+   TAB CONTENT ANIMATION
+   ============================================ */
+.tabs-content {
+  animation: fadeIn 0.3s ease-out;
+}
+
+/* ============================================
+   PROGRESS BAR FILL ANIMATION
+   ============================================ */
+@keyframes progressFill {
+  from { width: 0%; }
+}
+
+.progress-animated {
+  animation: progressFill 1.2s ease-out forwards;
+}
+
+/* ============================================
+   NUMBER TICKER ANIMATION
+   ============================================ */
+@keyframes countUp {
+  from { opacity: 0; transform: translateY(10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.count-animated {
+  animation: countUp 0.5s ease-out forwards;
+}
+
+/* ============================================
+   INPUT FOCUS STYLING
+   ============================================ */
+input:focus, textarea:focus, select:focus {
+  outline: none;
+  border-color: #06b6d4;
+  box-shadow: 0 0 0 3px rgba(6, 182, 212, 0.2);
+}
+
+/* ============================================
+   RESPONSIVE TYPOGRAPHY
+   ============================================ */
+@media (max-width: 640px) {
+  h1 { font-size: 2rem; }
+  h2 { font-size: 1.5rem; }
+}
+
+/* ============================================
+   CHART TOOLTIP
+   ============================================ */
+.recharts-tooltip-wrapper {
+  outline: none;
+}
+
+/* ============================================
+   DIALOG OVERLAY
+   ============================================ */
+[data-state="open"] > [data-radix-dialog-overlay] {
+  background: rgba(0, 0, 0, 0.8);
+  backdrop-filter: blur(4px);
+}
+
+/* ============================================
+   HERO IMAGE GLOW
+   ============================================ */
+.hero-image-glow {
+  filter: drop-shadow(0 0 30px rgba(6, 182, 212, 0.3));
+  transition: filter 0.3s ease;
+}
+.hero-image-glow:hover {
+  filter: drop-shadow(0 0 50px rgba(168, 85, 247, 0.4));
+}
+
+/* ============================================
+   STATS COUNTER CARD ANIMATION
+   ============================================ */
+.stat-card {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.stat-card:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 20px rgba(6, 182, 212, 0.25);
+}
